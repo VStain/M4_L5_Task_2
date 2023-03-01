@@ -3,6 +3,7 @@
 #include <windows.h>
 #include <string>
 #include <cstdlib>
+#include <algorithm>
 
 /*
 Задача 2. Сортируем адреса
@@ -16,6 +17,12 @@
 
 Формат вывода адреса: <название города>, <название улицы>, <номер дома>, <номер квартиры>. */
 using namespace std;
+
+// Функция, которая сравнивает строки по алфавиту
+bool compareString(const string& a, const string& b)
+{
+    return a < b;
+}
 
 class Address
 {
@@ -73,12 +80,17 @@ private:
     int apart_number__1 = 0;
 };
 
+void sort(int address_count, int* address_arr)
+{
+
+}
+
 int main()
 {
     setlocale(LC_ALL, "Rus");
     string str;
     string address_count;
-    ifstream input("C:\\VHome Dump\\My Projects\\Home_Works\\Module_4\\M4_L5_Task_1\\in.txt");
+    ifstream input("C:\\VHome Dump\\My Projects\\Home_Works\\Module_4\\M4_L5_Task_2\\M4_L5_Task_2\\in.txt");
 
     if (input.is_open())
     {
@@ -106,11 +118,23 @@ int main()
             address_arr[i].Set_apart_number(flat_number);
         }
 
-        ofstream output("C:\\VHome Dump\\My Projects\\Home_Works\\Module_4\\M4_L5_Task_1\\out.txt");
+        sort(address_arr, address_arr + address_count, compareString);
+
+        // Вывод массива в консоль для проверки правильности работы сортировки
+        for (int i = 0; i < address_count; i++)
+        {
+            cout << address_arr[i].Get_city() << " ";
+            cout << address_arr[i].Get_street() << " ";
+            cout << address_arr[i].Get_house_number() << " ";
+            cout << address_arr[i].Get_apart_number() << " ";
+            cout << endl;
+        }
+
+        ofstream output("C:\\VHome Dump\\My Projects\\Home_Works\\Module_4\\M4_L5_Task_2\\M4_L5_Task_2\\out.txt");
 
         output << address_count << endl;
 
-        for (int i = address_count - 1; i >= 0; --i)
+        for (int i = 0; i < address_count; ++i)
         {
             // записать название города в файл
             output << address_arr[i].Get_city() << " ";
@@ -131,3 +155,4 @@ int main()
     }
     return 0;
 }
+    
