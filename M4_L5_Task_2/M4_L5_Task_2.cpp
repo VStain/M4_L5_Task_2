@@ -19,9 +19,9 @@
 using namespace std;
 
 // Функция, которая сравнивает строки по алфавиту
-bool compareString(const string& a, const string& b)
+void sort(int address_count, int* address_arr)
 {
-    return a < b;
+
 }
 
 class Address
@@ -80,10 +80,7 @@ private:
     int apart_number__1 = 0;
 };
 
-void sort(int address_count, int* address_arr)
-{
 
-}
 
 int main()
 {
@@ -91,6 +88,7 @@ int main()
     string str;
     string address_count;
     ifstream input("C:\\VHome Dump\\My Projects\\Home_Works\\Module_4\\M4_L5_Task_2\\M4_L5_Task_2\\in.txt");
+    bool swapped = false;
 
     if (input.is_open())
     {
@@ -118,7 +116,25 @@ int main()
             address_arr[i].Set_apart_number(flat_number);
         }
 
-        sort(address_arr, address_arr + address_count, compareString);
+        do
+        {
+            swapped = false;
+            for (int i = address_count - 1; i > 0; --i)
+            {
+                if (address_arr[i - 1] > address_arr[i])
+                {
+                    string temp = address_arr[i - 1];
+                    address_arr[i - 1] = address_arr[i];
+                    address_arr[i] = temp;
+                    swapped = true;
+                }
+            }
+            for (int i = 0; i < address_count; ++i)
+            {
+                cout << address_arr[i] << " ";
+            }
+            cout << endl;
+        } while (swapped);
 
         // Вывод массива в консоль для проверки правильности работы сортировки
         for (int i = 0; i < address_count; i++)
