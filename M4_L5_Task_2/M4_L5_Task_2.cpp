@@ -19,6 +19,11 @@
 using namespace std;
 
 // Функция, которая сравнивает строки по алфавиту
+void sort(int address_count, int* address_arr, bool swapped)
+{
+    
+}
+
 void sort(int address_count, int* address_arr)
 {
 
@@ -121,9 +126,9 @@ int main()
             swapped = false;
             for (int i = address_count - 1; i > 0; --i)
             {
-                if (address_arr[i - 1] > address_arr[i])
+                if (address_arr[i - 1].Get_city() > address_arr[i].Get_city())
                 {
-                    string temp = address_arr[i - 1];
+                    Address temp = address_arr[i - 1];
                     address_arr[i - 1] = address_arr[i];
                     address_arr[i] = temp;
                     swapped = true;
@@ -131,10 +136,26 @@ int main()
             }
             for (int i = 0; i < address_count; ++i)
             {
-                cout << address_arr[i] << " ";
+                cout << address_arr[i].Get_city() << " ";
             }
             cout << endl;
         } while (swapped);
+
+        /*do
+        {
+            swapped = false;
+            for (int i = address_count - 1; i > 0; --i)
+            {
+                if (address_arr[i - 1].Get_city() > address_arr[i].Get_city())
+                {
+                    Address temp = address_arr[i - 1]; //тоже адрес, а не строка
+                    address_arr[i - 1] = address_arr[i];
+                    address_arr[i] = temp;
+                    swapped = true;
+                }
+            }
+        } while (swapped);
+        */
 
         // Вывод массива в консоль для проверки правильности работы сортировки
         for (int i = 0; i < address_count; i++)
